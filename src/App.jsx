@@ -46,8 +46,19 @@ const App = () => {
               </div>              
               )
             })}
+
+            <div className="col-12 d-flex justify-content-end fixed-bottom">
+              <button className='change' onChange={fetchActors}> <i class="fa-solid fa-arrow-left"></i> </button>
+              <button className='change' onDragCapture={}> <i class="fa-solid fa-arrow-right"></i> </button>
+              
+            </div>
+
+
+
         </div>
       </div>
+
+      
 
   )
 }
