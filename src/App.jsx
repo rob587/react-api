@@ -2,40 +2,41 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
+
 const App = () => {
 
- const [actors, setActors] = useState([])
+ const [people, setPeople] = useState([])
 
  const [page, setPage] = useState(1)
 
- const fetchActors = () => {
-  axios.get(`https://lanciweb.github.io/demo/api/actors?page=${page}`).then((resp) =>{
-    setActors(resp.data)
-   
+ const fetchData = () => {
+
+    const url = page === 1
+    ? `https://lanciweb.github.io/demo/api/actors?page=1`
+    : `https://lanciweb.github.io/demo/api/actresses?page=${page - 1}`
+ 
+ 
+    axios.get(`https://lanciweb.github.io/demo/api/actors?page=${page}`).then((resp) =>{
+    setPeople(resp.data.results || resp.data)
   })
  }
 
  useEffect(fetchActors, [page])
 
- const next = () => {
-  setPage(page + 1)
- }
+ const next = () => setPage(prev => prev + 1)
+ 
 
- const previous = () => {
-  if(page !== 1){
-    setPage(page - 1)
-  }
- }
+ const previous = () => setPage(prev => (prev > 1 ? prev - 1 : 1))
 
   return (
     
       <div className="container">
         <div className="row gy-3">
           <div className="col-12">
-            <h1 className='text-center mt-5'>Attori formidabili incredibili</h1>
+            <h1 className='text-center mt-5'> {page === 1 ? "Attori formidabili incredibili" : "Attrici formidabili incredibili"}</h1>
           </div>
 
-            {actors.map(act => {
+            {people.map(act => {
               
               return (
                 
@@ -65,15 +66,15 @@ const App = () => {
               
             </div>
 
-            <actressesList/>
 
 
         </div>
       </div>
-
       
-  )
-}
+      
+    )
+  }
+  <ActressesList/>
 
 export default App
 
