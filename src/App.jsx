@@ -1,4 +1,4 @@
-import React, { act, use } from 'react'
+
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
@@ -8,7 +8,8 @@ const App = () => {
 
  const fetchActors = () => {
   axios.get("https://lanciweb.github.io/demo/api/actors/").then((resp) =>{
-    setActors(resp.data.results)
+    console.log(resp)
+    setActors(resp.data)
    
   })
  }
