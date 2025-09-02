@@ -16,12 +16,12 @@ const App = () => {
     : `https://lanciweb.github.io/demo/api/actresses?page=${page - 1}`
  
  
-    axios.get(`https://lanciweb.github.io/demo/api/actors?page=${page}`).then((resp) =>{
+    axios.get(url).then((resp) =>{
     setPeople(resp.data.results || resp.data)
   })
  }
 
- useEffect(fetchActors, [page])
+ useEffect(fetchData, [page])
 
  const next = () => setPage(prev => prev + 1)
  
@@ -36,22 +36,22 @@ const App = () => {
             <h1 className='text-center mt-5'> {page === 1 ? "Attori formidabili incredibili" : "Attrici formidabili incredibili"}</h1>
           </div>
 
-            {people.map(act => {
+            {people.map(person => {
               
               return (
                 
-              <div className="col-6" key={act.id}>
+              <div className="col-6" key={person.id}>
                <div className="character">
-                  <img src={act.image} alt={act.name} />
+                  <img src={person.image} alt={person.name} />
                   
               
 
                   <div className="infos ms-4">
-                    <h4>{act.name}</h4>
-                    <p>{act.nationality}</p>
-                    <p>{act.birth_year}</p>
-                    <p>{act.biography}</p>
-                    <p>{act.known_for + "" }</p>
+                    <h4>{person.name}</h4>
+                    <p>{person.nationality}</p>
+                    <p>{person.birth_year}</p>
+                    <p>{person.biography}</p>
+                    <p>{person.known_for + "" }</p>
                   </div>
 
 
@@ -61,7 +61,7 @@ const App = () => {
             })}
 
             <div className="col-12 d-flex justify-content-end fixed-bottom">
-              <button className='change' onClick={previous}> <i className="fa-solid fa-arrow-left"></i> </button>
+              <button className='change' onClick={previous} disabled={page===1}> <i className="fa-solid fa-arrow-left"></i> </button>
               <button className='change' onClick={next}> <i className="fa-solid fa-arrow-right"></i> </button>
               
             </div>
@@ -74,7 +74,7 @@ const App = () => {
       
     )
   }
-  <ActressesList/>
+  
 
 export default App
 
