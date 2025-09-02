@@ -6,6 +6,8 @@ const App = () => {
 
  const [actors, setActors] = useState([])
 
+ const [page, setPage] = useState(1)
+
  const fetchActors = () => {
   axios.get("https://lanciweb.github.io/demo/api/actors/").then((resp) =>{
     setActors(resp.data)
@@ -14,6 +16,14 @@ const App = () => {
  }
 
  useEffect(fetchActors, [])
+
+ const next = () => {
+  setPage(page + 1)
+ }
+
+ const previous = () => {
+  setPage(page - 1)
+ }
 
   return (
     
@@ -49,7 +59,7 @@ const App = () => {
 
             <div className="col-12 d-flex justify-content-end fixed-bottom">
               <button className='change' onChange={fetchActors}> <i class="fa-solid fa-arrow-left"></i> </button>
-              <button className='change' onDragCapture={}> <i class="fa-solid fa-arrow-right"></i> </button>
+              <button className='change' onChange={}> <i class="fa-solid fa-arrow-right"></i> </button>
               
             </div>
 
