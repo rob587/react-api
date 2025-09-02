@@ -8,7 +8,6 @@ const App = () => {
 
  const fetchActors = () => {
   axios.get("https://lanciweb.github.io/demo/api/actors/").then((resp) =>{
-    console.log(resp)
     setActors(resp.data)
    
   })
@@ -19,12 +18,13 @@ const App = () => {
   return (
     
       <div className="container">
-        <div className="row">
+        <div className="row gy-3">
           <div className="col-12">
             <h1 className='text-center mt-5'>Attori formidabili incredibili</h1>
           </div>
 
             {actors.map(act => {
+              
               return (
                 
               <div className="col-6" key={act.id}>
