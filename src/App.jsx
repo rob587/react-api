@@ -9,20 +9,22 @@ const App = () => {
  const [page, setPage] = useState(1)
 
  const fetchActors = () => {
-  axios.get("https://lanciweb.github.io/demo/api/actors/").then((resp) =>{
+  axios.get(`https://lanciweb.github.io/demo/api/actors?page=${page}`).then((resp) =>{
     setActors(resp.data)
    
   })
  }
 
- useEffect(fetchActors, [])
+ useEffect(fetchActors, [page])
 
  const next = () => {
   setPage(page + 1)
  }
 
  const previous = () => {
-  setPage(page - 1)
+  if(page !== 1){
+    setPage(page - 1)
+  }
  }
 
   return (
@@ -58,18 +60,18 @@ const App = () => {
             })}
 
             <div className="col-12 d-flex justify-content-end fixed-bottom">
-              <button className='change' onChange={fetchActors}> <i class="fa-solid fa-arrow-left"></i> </button>
-              <button className='change' onChange={}> <i class="fa-solid fa-arrow-right"></i> </button>
+              <button className='change' onClick={previous}> <i className="fa-solid fa-arrow-left"></i> </button>
+              <button className='change' onClick={next}> <i className="fa-solid fa-arrow-right"></i> </button>
               
             </div>
 
+            <actressesList/>
 
 
         </div>
       </div>
 
       
-
   )
 }
 
