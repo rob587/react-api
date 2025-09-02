@@ -1,5 +1,7 @@
 body{
   background-color: lightgray;
+
+  font-family: 'Ubuntu';
 }
 
 
@@ -12,6 +14,6 @@ body{
   border-radius: 20px;
 }
 
-.char-text{
-  padding: 25px;
-}
+
+
+

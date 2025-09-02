@@ -31,15 +31,14 @@ const App = () => {
                <div className="character">
                   <img src={act.image} alt={act.name} />
                   
-                  <div className="actor-text">
-                    <h3>{act.name}</h3>
-                  </div>
+              
 
-                  <div className="infos">
+                  <div className="infos ms-4">
+                    <h4>{act.name}</h4>
                     <p>{act.nationality}</p>
                     <p>{act.birth_year}</p>
                     <p>{act.biography}</p>
-                    <p>{act.known_for}</p>
+                    <p>{act.known_for + "" }</p>
                   </div>
 
 
